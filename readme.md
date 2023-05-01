@@ -545,3 +545,53 @@ From Amazon, rating 4
 predict_rating(model2, tok, "This cotton linen long sleeve men 's casual shirt is very suitable for wearing in daily life and work, very comfortable and breathable. My husband usually wears the S model, because he likes to wear a little loose, I ordered this L, which is a really soft cotton and linen material, feels very comfortable, and presents his body perfectly. He likes to wear this men 's cotton and linen long-sleeved business shirt, I also like him to wear this cotton and linen shirt, no smell and itching and take care of very convenient, will not appear color and shrinkage of the situation, the seam is also very in place, no extra thread.I highly recommend this long-sleeved linen shirt for men. My husband told me it was the best gift he ever received and he was very happy.")
 
 tensor(4)
+
+### [Ejercicio 6](https://github.com/FIUBA-Posgrado-Inteligencia-Artificial/procesamiento_lenguaje_natural/tree/main/clase_6/ejercicios)
+
+Se entrena un modelo cuyo objetivo es implementar un QA bot. Para esto se usa un modelo encoder-decoder.
+#### Configuración:
+* MAX_VOCAB_SIZE = 8000
+* max_length = 10
+* Embeddings 300 Fasttext
+* n_units = 256, pero se probó también con 128
+* LSTM Dropout 0.2
+* Epochs 50
+
+Para dicho bot se usó un mismo tokenizer tanto para la entrada del encoder como para la entrada del decoder. Para el fit del mismo se usaron las sentencias de input, de output y los ítems <eos> y <sos> que representan el inicio y fin de una oración.
+
+La cantidad de parámetros entrenables del modelo fue de 2.054.584, este número se incrementó notoriamente al cambiar n_units de 128 a 256. Este cambio se hizo con la esperanza de que el modelo se comporte mejor en las pruebas manuales.
+
+Vemos como queda la arquitectura del modelo:
+![encoder-decoder](conversational_bot/model_plot.png)
+
+![encoder](conversational_bot/encoder_plot.png)
+
+![ddecoder](conversational_bot/decoder_plot.png)
+
+
+Luego de entrenar al modelo por 50 epochs se llegó a un accuracy en train del 100% y en validación del 96,69%. Estos valores altos se alcanzaban con pocas epochs y también con 128 n_units, sin embargo las respuestas del bot no fueron muy robustas. A continuación dejo algunos ejemplos:
+
+Input: yes i like to play football 
+Response: wrong wrong wrong wrong wrong wrong wrong
+
+Input: Hello bot how are you?
+Response: contour contour contour contour contour allergy allergy allergy
+
+Input: Do you read?
+Response: alwar alwar alwar alwar
+
+Input: Do you have any pet?
+Response: wrong wrong wrong wrong wrong
+
+Input: What is your name?
+Response: whatever whatever whatever whatever
+
+Input: Where are you from?
+Response: whatever whatever whatever whatever
+
+Input: Who is the best of the world?
+Response: gob gob gob gob gob gob
+
+
+
+

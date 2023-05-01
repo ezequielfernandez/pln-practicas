@@ -1,3 +1,4 @@
 *.csv
 torch_helpers.py
 *.json
+conversational_bot/gloveembedding.pkl
