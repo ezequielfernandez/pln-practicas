@@ -566,13 +566,12 @@ Se entrena un modelo cuyo objetivo es implementar un QA bot. Para esto se usa un
 - MAX_VOCAB_SIZE = 8000
 - max_length = 10
 - Embeddings 300 Fasttext
-- n_units = 256, pero se probó también con 128
+- n_units = 128
 - LSTM Dropout 0.2
-- Epochs 50
+- Epochs 30
 
 Para dicho bot se usó un mismo tokenizer tanto para la entrada del encoder como para la entrada del decoder. Para el fit del mismo se usaron las sentencias de input, de output y los ítems y que representan el inicio y fin de una oración.
-
-La cantidad de parámetros entrenables del modelo fue de 2.054.584, este número se incrementó notoriamente al cambiar n_units de 128 a 256. Este cambio se hizo con la esperanza de que el modelo se comporte mejor en las pruebas manuales.
+Se usó la función strim() para eliminar espacios extra que habia en las sentencias del dataset.
 
 Vemos como queda la arquitectura del modelo:  
 ![encoder-decoder](conversational_bot/model_plot.png)
@@ -581,7 +580,7 @@ Vemos como queda la arquitectura del modelo:
 
 ![decoder](conversational_bot/decoder_plot.png)
 
-Luego de entrenar al modelo por 50 epochs se llegó a un accuracy en train del 100% y en validación del 96,69%.
+Luego de entrenar al modelo por 30 epochs se llegó a un accuracy en train del 100% y en validación del 96,69%.
 
 A continuación vemos una gráfica del accuracy durante las epocas del entrenamiento.
 ![accuracy](assets/bot_train.png)
