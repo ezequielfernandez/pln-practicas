@@ -585,7 +585,7 @@ Luego de entrenar al modelo por 30 epochs se llegó a un accuracy en train del 1
 A continuación vemos una gráfica del accuracy durante las epocas del entrenamiento.
 ![accuracy](assets/bot_train.png)
 
-Estos valores altos se alcanzaban con pocas epochs y también con 128 n_units, sin embargo las respuestas del bot no fueron muy robustas. A continuación dejo algunos ejemplos:
+Luego de unas correcciones hechas a la hora de pre procesar los tokens de inicio y final de sentencia mejoró un poco el comportamiento, sin embargo parece tener complicaciones para entender cuando terminar la sentencia.
 
 Input: yes i like to play football  
 Response: wrong wrong wrong wrong wrong wrong wrong
